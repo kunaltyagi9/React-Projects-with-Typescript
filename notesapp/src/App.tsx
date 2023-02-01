@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { NoteObject } from './models/note';
 
@@ -12,14 +12,23 @@ import { Box } from '@mui/material';
 function App() {
 
   const [notes, setNotes] = useState<NoteObject[]>([]);
+
+  useEffect(() => {
+    if (sessionStorage.getItem('notes')) {
+      setNotes(JSON.parse(sessionStorage.getItem('notes') as string));
+    }
+  }, [])
   
   const deleteNote = (id: number) => {
     const updatedNotes = notes.filter(note => note.id !== id);
     setNotes(updatedNotes); 
+    sessionStorage.setItem('notes', JSON.stringify(updatedNotes));
   }
 
   const addNote = (note: NoteObject) => {
     setNotes([ note, ...notes ]);
+    console.log(sessionStorage);
+    sessionStorage.setItem('notes', JSON.stringify([ note, ...notes ]));
   }
   
   return (
