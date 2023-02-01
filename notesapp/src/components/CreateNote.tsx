@@ -4,6 +4,7 @@ import { Box, InputBase, Button, styled, Typography } from "@mui/material";
 import { v4 as uuid } from 'uuid';
 
 import { NoteObject } from "../models/note";
+import { TITLE_LIMIT, TEXT_LIMIT } from "../constants/constant";
 
 const Container = styled(Box)`
     & > * {
@@ -14,12 +15,18 @@ const Container = styled(Box)`
         border-bottom: 1px solid #111111;
         opacity: 0.4;
         width: 300px;
+        padding-right: 25px;
     }
     & > div > input[type="color"] {
         position: relative;
         bottom: -10px;
         width: 40px;
         height: 30px;
+    }
+    & > span {
+        font-size: 10px;
+        position: relative;
+        right: 40px;
     }
 `;
 
@@ -62,7 +69,6 @@ const CreateNote: React.FC<ICreateNoteProps> = ({ addNote }) => {
 
         addNote({ ...note, id: uuid() });
         setNote(defaultObj);
-        console.log(note);
     }
 
     return (
@@ -72,15 +78,21 @@ const CreateNote: React.FC<ICreateNoteProps> = ({ addNote }) => {
                 value={note.title} 
                 onChange={(e) => onValueChange(e)} 
                 placeholder="Title" 
+                inputProps={{
+                    maxLength: TITLE_LIMIT
+                }}
             />
-            {/* <Typography>{note.title.length}/20</Typography> */}
+            <Box component="span">{note.title.length}/{TITLE_LIMIT}</Box>
             <InputBase 
                 name="text" 
                 value={note.text} 
                 onChange={(e) => onValueChange(e)} 
-                placeholder="Details" 
+                placeholder="Details"
+                inputProps={{
+                    maxLength: TEXT_LIMIT
+                }}
             />
-            {/* <Typography>{note.text.length}/50</Typography> */}
+            <Box component="span">{note.text.length}/{TEXT_LIMIT}</Box>
             <InputBase 
                 type="color"
                 name="color"
