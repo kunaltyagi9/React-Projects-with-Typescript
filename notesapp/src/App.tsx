@@ -12,8 +12,7 @@ import { Box } from '@mui/material';
 function App() {
 
   const [notes, setNotes] = useState<NoteObject[]>([]);
-  const [error, setError] = useState<string>('');
-
+  
   const deleteNote = (id: number) => {
     const updatedNotes = notes.filter(note => note.id !== id);
     setNotes(updatedNotes); 
@@ -27,7 +26,7 @@ function App() {
     <>
       <Header />
       <Box style={{ padding: 20 }}>
-        <CreateNote addNote={addNote} setError={setError} />
+        <CreateNote addNote={addNote} />
         <Notes notes={notes} deleteNote={deleteNote} />
       </Box>
     </>

@@ -16,11 +16,13 @@ const Notes: React.FunctionComponent<INotesProps> = ({ notes, deleteNote }) => {
     return (
         <Box>
             <Typography variant="h5">Notes</Typography>
-            {
-                notes.map(note => (
-                    <Note key={note.id} note={note} deleteNote={deleteNote} />
-                ))
-            }
+            <Box style={{ display: 'flex', flexWrap: 'wrap' }}>
+                {
+                    notes.map(note => (
+                        <Note key={note.id} note={note} deleteNote={deleteNote} />
+                    ))
+                }
+            </Box>
         </Box>
     )
 }
