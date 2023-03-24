@@ -1,0 +1,31 @@
+.board-wrapper {
+  width: 20%;
+  margin: auto;
+}
+
+.board-column {
+  padding: 0 !important;
+  height: 100px;
+  width: 75px;
+}
+
+.board-square {
+  height: 100%;
+  width: 100%;
+  font-size: 80px;
+  color: #fff;
+}
+
+.square_O {
+  background-color: green;
+}
+
+.square_X {
+  background-color: red;
+}
+
+p {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 100px !important;
+}
